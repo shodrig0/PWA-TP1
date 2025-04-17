@@ -1,4 +1,4 @@
-import { Filtro } from "../../Buttons/Button_Filtros/Filtro_Vista"
+import FiltroVista from "../../Buttons/Button_Filtros/FiltroVista"
 import { Item, ValoresFiltros } from "../../../utils/types"
 import Formulario from "../../Formularios/Formulario"
 import ButtonDelete from "../../Buttons/Button_Delete/ButtonDelete"
@@ -11,6 +11,8 @@ interface Props {
     onClearCompleted: () => void
     handleFilterChange: (filtro: ValoresFiltros) => void
     agregarItem: (item: Item) => void
+    pelis: Item[]
+    // tipoSeleccionado: 'pelicula' | 'serie' // RECORDAR LO DEL HANDLE TAMBIÉN ESTÁ EN FILTROVISTA
 }
 
 const Header: React.FC<Props> = ({
@@ -19,20 +21,26 @@ const Header: React.FC<Props> = ({
     filtroSeleccionado,
     handleFilterChange,
     onClearCompleted,
-    agregarItem
+    agregarItem,
+    pelis,
+    // tipoSeleccionado
 }) => {
 
-    const countListaCompletada = contadorActivo === 1
-    const countMsj = countListaCompletada ? 'peli' : 'pelis'
+    const peliculasPendientes = pelis.filter(peli => peli.tipo === 'Pelicula' && !peli.vista).length
+    const seriesPendientes = pelis.filter(peli => peli.tipo === 'Serie' && !peli.vista).length
+
     return (
         <>
-            <header className="">
-                <span className="">
-                    <strong>{contadorActivo}</strong> {countMsj} pendiente{!countMsj && 's'}
-                </span>
-                <Filtro
+            <header>
+                {contadorActivo > 0 ? (
+                    <span>
+                        Tenés <strong>{peliculasPendientes}</strong> {peliculasPendientes === 1 ? 'peli' : 'pelis'} y{' '}
+                        <strong>{seriesPendientes}</strong> {seriesPendientes === 1 ? 'serie' : 'series'} para ver
+                    </span>) : (<span>No hay nada para ver</span>)}
+                <FiltroVista
                     filtroSeleccionado={filtroSeleccionado}
                     onFiltroChange={handleFilterChange}
+                // tipoContenido={tipoSeleccionado}
                 />
             </header>
 

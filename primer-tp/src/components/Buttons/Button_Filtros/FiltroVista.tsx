@@ -7,7 +7,7 @@ interface Props {
     filtroSeleccionado: ValoresFiltros
 }
 
-export const Filtro: React.FC<Props> = ({ filtroSeleccionado, onFiltroChange }) => {
+const FiltroVista: React.FC<Props> = ({ filtroSeleccionado, onFiltroChange }) => {
     return (
         <ul className="">
             {
@@ -31,3 +31,5 @@ export const Filtro: React.FC<Props> = ({ filtroSeleccionado, onFiltroChange }) 
         </ul>
     )
 }
+
+export default FiltroVista

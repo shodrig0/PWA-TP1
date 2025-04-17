@@ -1,12 +1,13 @@
 import { type Item as ItemType, type ItemId, type ListOfItems } from "../../utils/types"
 import { Input } from "../Buttons/Button_Input/Input"
-import { COLORES } from "../../utils/consts";
+import { COLORES } from "../../utils/consts"
 import styles from "./Items.module.css"
 
+type OnCheckCompleted = (args: Pick<ItemType, "id" | "vista">) => void
 interface Props {
-    items: ListOfItems;
-    onCheckCompleted: ({ id, vista }: Pick<ItemType, "id" | "vista">) => void;
-    onRemovePeli: ({ id }: ItemId) => void;
+    items: ListOfItems
+    onCheckCompleted: OnCheckCompleted
+    onRemovePeli: ({ id }: ItemId) => void
 }
 
 export const Items: React.FC<Props> = ({ items, onRemovePeli, onCheckCompleted }) => {

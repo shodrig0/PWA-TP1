@@ -3,6 +3,12 @@ export const ESTADO_PELIS = {
     COMPLETED: 'completed'
 } as const
 
+export const TIPO_CONTENIDO = {
+    PELICULA: 'pelicula',
+    SERIE: 'serie'
+} as const
+
+
 export const ESTADO_BTNS = {
     [ESTADO_PELIS.ACTIVE]: {
         estado: 'Activas',
@@ -15,3 +21,4 @@ export const ESTADO_BTNS = {
 } as const
 
 export const COLORES = ['red', 'blue', 'green']
+
