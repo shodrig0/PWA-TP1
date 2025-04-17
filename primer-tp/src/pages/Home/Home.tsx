@@ -10,6 +10,11 @@ const mockPeliculas = [
     {
         id: '1',
         title: 'Django Unchained',
+        director: 'Quentin Tarantino',
+        anio: 2012,
+        genero: 'Acción',
+        rating: 8.5,
+        tipo: 'Película',
         vista: false
     },
     {
@@ -79,8 +84,16 @@ const Home = () => {
         return peli
     })
 
-    const handleDuplicateTitle = (title: string): void => {
-        const titulo = title.trim().toLowerCase()
+    const handleDuplicateTitle = (item: {
+        title: string
+        director: string
+        anio: string
+        genero: string
+        rating: string
+        tipo: string
+        imagen: string
+    }): void => {
+        const titulo = item.title.trim().toLowerCase()
 
         const enLista = pelis.some(peli => peli.title.trim().toLowerCase() === titulo)
         if (enLista) {
@@ -90,7 +103,7 @@ const Home = () => {
 
         const nuevaPeli: ItemType = {
             id: crypto.randomUUID(),
-            title: title.trim(),
+            title: item.title.trim(),
             vista: false
         }
 
@@ -104,7 +117,6 @@ const Home = () => {
                 contadorCompleto={contadorCompleto}
                 filtroSeleccionado={filtroSeleccionado}
                 handleFilterChange={handleFilterChange}
-                onClearDone={() => { }}
                 agregarItem={handleDuplicateTitle}
             />
             <div className={styles.container}>

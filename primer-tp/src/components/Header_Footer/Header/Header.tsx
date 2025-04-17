@@ -7,9 +7,16 @@ interface Props {
     contadorActivo: number
     contadorCompleto: number
     filtroSeleccionado: ValoresFiltros
-    onClearDone: () => void
     handleFilterChange: (filtro: ValoresFiltros) => void
-    agregarItem: (title: string) => void
+    agregarItem: (item: {
+        title: string
+        director: string
+        anio: string
+        genero: string
+        rating: string
+        tipo: string
+        imagen: string
+    }) => void
 }
 
 const Header: React.FC<Props> = ({
@@ -17,7 +24,6 @@ const Header: React.FC<Props> = ({
     contadorCompleto = 0,
     filtroSeleccionado,
     handleFilterChange,
-    onClearDone,
     agregarItem
 }) => {
     return (
