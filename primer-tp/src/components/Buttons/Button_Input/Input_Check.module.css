@@ -1,0 +1,122 @@
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    animation: jello-horizontal 0.5s ease-out both;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.checkbox:checked + .checkmark {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.labelText {
+  font-size: 14px;
+  color: #333;
+}
+
+.container:hover .checkmark {
+  border-color: #888;
+}
+
+  .checkmark:hover {
+    animation: jello-horizontal 0.9s both;
+  }
+
+  .checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    border-radius: 50%;   
+    border: solid 0.010em #2020205b;
+    background-color: #ffff;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: rgb(79, 209, 53);
+    border-color: #2020205b;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+  }
+  
+  @keyframes jello-horizontal {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    30% {
+      transform: scale3d(1.1, 0.9, 1);
+    }
+  
+    40% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+  
+    65% {
+      transform: scale3d(0.98, 1.02, 1);
+    }
+  
+    75% {
+      transform: scale3d(1.02, 0.98, 1);
+    }
+  
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
