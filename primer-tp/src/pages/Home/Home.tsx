@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { Items } from "../../components/Items/Items"
-import { ItemId, ValoresFiltros, type Item as ItemType } from "../../utils/types"
+import { Item, ItemId, ValoresFiltros, type Item as ItemType } from "../../utils/types"
 import { ESTADO_PELIS } from "../../utils/consts"
 import Header from "../../components/Header_Footer/Header/Header"
 import styles from "./Home.module.css"
-
 
 const mockPeliculas = [
     {
@@ -20,11 +19,21 @@ const mockPeliculas = [
     {
         id: '2',
         title: 'Inglourious Basterds',
+        director: 'Quentin Tarantino',
+        anio: 2009,
+        genero: 'Acción',
+        rating: 8.4,
+        tipo: 'Película',
         vista: false
     },
     {
         id: '3',
         title: 'Kill Bill: Volumen I',
+        director: 'Quentin Tarantino',
+        anio: 2003,
+        genero: 'Acción',
+        rating: 8.2,
+        tipo: 'Película',
         vista: false
     }
 ]
@@ -84,15 +93,9 @@ const Home = () => {
         return peli
     })
 
-    const handleDuplicateTitle = (item: {
-        title: string
-        director: string
-        anio: string
-        genero: string
-        rating: string
-        tipo: string
-        imagen: string
-    }): void => {
+    console.log(pelisFiltradas)
+
+    const handleDuplicateTitle = (item: Item): void => {
         const titulo = item.title.trim().toLowerCase()
 
         const enLista = pelis.some(peli => peli.title.trim().toLowerCase() === titulo)
@@ -104,6 +107,11 @@ const Home = () => {
         const nuevaPeli: ItemType = {
             id: crypto.randomUUID(),
             title: item.title.trim(),
+            director: item.director.trim(),
+            anio: Number(item.anio),
+            genero: item.genero.trim(),
+            rating: Number(item.rating),
+            tipo: item.tipo.trim(),
             vista: false
         }
 
@@ -117,6 +125,7 @@ const Home = () => {
                 contadorCompleto={contadorCompleto}
                 filtroSeleccionado={filtroSeleccionado}
                 handleFilterChange={handleFilterChange}
+                onClearCompleted={() => { }}
                 agregarItem={handleDuplicateTitle}
             />
             <div className={styles.container}>

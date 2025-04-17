@@ -18,7 +18,6 @@
     width: 44%;
   }
   .deleteButton:hover {
-    background-color: rgb(237, 56, 56);
     overflow: visible;
   }
   .bin path {

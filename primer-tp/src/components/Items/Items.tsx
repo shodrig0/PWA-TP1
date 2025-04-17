@@ -17,6 +17,11 @@ export const Items: React.FC<Props> = ({ items, onRemovePeli, onCheckCompleted }
                     <Input
                         id={item.id}
                         title={item.title}
+                        director={item.director}
+                        anio={item.anio}
+                        genero={item.genero}
+                        rating={item.rating}
+                        tipo={item.tipo}
                         vista={item.vista}
                         onCheckCompleted={onCheckCompleted}
                         onRemoveItem={onRemovePeli}
