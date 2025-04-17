@@ -54,8 +54,9 @@ const Home = () => {
     const [filtroSeleccionado, setFiltroSeleccionado] = useState<ValoresFiltros>(ESTADO_PELIS.ACTIVE)
 
 
-    const handleRemover = ({ id }: ItemId): void => {
-        const nuevasPelis = pelis.filter(peli => peli.id !== id)
+    const handleRemover = (args?: { id?: ItemId["id"] }): void => {
+        if (!args?.id) return
+        const nuevasPelis = pelis.filter(peli => peli.id !== args.id)
         setPelis(nuevasPelis)
     }
 
@@ -136,7 +137,7 @@ const Home = () => {
             <div className={styles.container}>
                 <Items
                     onCheckCompleted={handleCompletado}
-                    onRemovePeli={handleRemover}
+                    onRemoveItem={handleRemover}
                     items={pelisFiltradas}
                 />
             </div>

@@ -12,15 +12,15 @@ li {
   }
 
   .cards .red {
-    background-color: #3f7ef4;
+    background-color: rgba(158, 191, 58, 0.885);
   }
   
   .cards .blue {
-    background-color: #2fa560;
+    background-color: rgba(216, 37, 28, 0.800);
   }
   
   .cards .green {
-    background-color: #fd4343;
+    background-color: rgba(184, 43, 97, 0.800);
   }
 
   .card {

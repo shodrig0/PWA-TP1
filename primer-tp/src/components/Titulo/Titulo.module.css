@@ -1,0 +1,15 @@
+.titulo {
+ color: #ec008c;
+ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ font-weight: 100;
+ font-size: 5em;
+ text-align: center;
+ background: -webkit-linear-gradient(#ec008c, #f8adda, #ffffff);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ -webkit-text-stroke-width: 0.02em;
+ -webkit-text-stroke-color: black;
+ text-shadow: 2px 2px 8px #0000;
+
+}
