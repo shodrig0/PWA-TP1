@@ -99,6 +99,7 @@ export function usePelis() {
     }
 
     const handleCompletado = ({ id, vista }: Pick<ItemType, 'id' | 'vista'>): void => {
+        console.log("Peli ", id, "a vista =", vista)
         const nuevaPelis = pelis.map(peli => {
             if (peli.id === id) {
                 return {
@@ -123,20 +124,20 @@ export function usePelis() {
     const pelisFiltradas: Item[] = pelis.filter((peli) => {
         const coincideEstado =
             filtroSeleccionado === "Activas" ? !peli.vista :
-                filtroSeleccionado === "Completadas" ? peli.vista : true;
+                filtroSeleccionado === "Completadas" ? peli.vista : true
 
         const coincideGenero =
-            generoSelected === "Todos" ? true : peli.genero === generoSelected;
+            generoSelected === "Todos" ? true : peli.genero === generoSelected
 
         const coincideTipo =
-            tipoSeleccionado === "Todos" ? true : peli.tipo === tipoSeleccionado;
+            tipoSeleccionado === "Todos" ? true : peli.tipo === tipoSeleccionado
 
         const coincideBusqueda =
             textoBusqueda.trim() === "" ||
             peli.title.toLowerCase().includes(textoBusqueda.toLowerCase()) ||
-            peli.director.toLowerCase().includes(textoBusqueda.toLowerCase());
+            peli.director.toLowerCase().includes(textoBusqueda.toLowerCase())
 
-        return coincideEstado && coincideGenero && coincideTipo && coincideBusqueda;
+        return coincideEstado && coincideGenero && coincideTipo && coincideBusqueda
     })
 
     const handleDuplicateTitle = (item: Item): void => {
@@ -180,13 +181,22 @@ export function usePelis() {
         setGeneroSelected(e.target.value)
     }
 
-    const pelisFinalFiltradas = pelis
-        .filter((peli) => {
-            if (filtroSeleccionado === "active") return !peli.vista
-            if (filtroSeleccionado === "completed") return peli.vista
-            return true
-        })
-        .filter((peli) => generoSelected === "Todos" || peli.genero === generoSelected)
+    const pelisFinalFiltradas = pelis.filter((peli) => {
+        const coincideEstado =
+            filtroSeleccionado === "active" ? !peli.vista :
+                filtroSeleccionado === "completed" ? peli.vista :
+                    true
+
+        const coincideGenero = generoSelected === "Todos" || peli.genero === generoSelected
+        const coincideTipo = tipoSeleccionado === "Todos" || peli.tipo === tipoSeleccionado
+        const coincideBusqueda =
+            textoBusqueda.trim() === "" ||
+            peli.title.toLowerCase().includes(textoBusqueda.toLowerCase()) ||
+            peli.director.toLowerCase().includes(textoBusqueda.toLowerCase())
+
+        return coincideEstado && coincideGenero && coincideTipo && coincideBusqueda
+    })
+
 
     const handleBuscador = (text: string) => {
         setTextoBusqueda(text)

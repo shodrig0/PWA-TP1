@@ -15,7 +15,6 @@ export const Input: React.FC<Props> = ({ id, vista, onRemoveItem, onCheckComplet
     })
   }
 
-
   const inputId = `check-${id}`
 
   return (

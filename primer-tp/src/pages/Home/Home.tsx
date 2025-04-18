@@ -11,6 +11,7 @@ import Contador from "../../components/Contador/Contador"
 const Home = () => {
     const {
         pelisFiltradas,
+        pelisFinalFiltradas,
         abrirModal,
         enEdicion,
         selectedItem,
@@ -84,10 +85,11 @@ const Home = () => {
                     )
                 )}
             </Modal>
+            {console.log("Items filtrados:", pelisFiltradas.map(p => `${p.title} - ${p.vista}`))}
 
             <div className={styles.container}>
                 <Items
-                    items={pelisFiltradas}
+                    items={pelisFinalFiltradas}
                     onCheckCompleted={handleCompletado}
                     onRemoveItem={handleRemover}
                     editarItem={handleEditItem}
