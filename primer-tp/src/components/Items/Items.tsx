@@ -47,5 +47,5 @@ export const Items: React.FC<Props> = ({ items, onRemoveItem, onCheckCompleted, 
                 </div>
             ))}
         </div>
-    );
-};
+    )
+}

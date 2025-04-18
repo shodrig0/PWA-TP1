@@ -11,7 +11,6 @@ import Contador from "../../components/Contador/Contador"
 const Home = () => {
     const {
         pelisFiltradas,
-        pelisFinalFiltradas,
         abrirModal,
         enEdicion,
         selectedItem,
@@ -30,7 +29,11 @@ const Home = () => {
         onClearCompleted,
         contadorGeneroTotal,
         generoSelected,
-        setGeneroSelected
+        setGeneroSelected,
+        textoBusqueda,
+        handleBuscador,
+        tipoSeleccionado,
+        handleTipoSeleccion
     } = usePelis()
 
     return (
@@ -46,6 +49,11 @@ const Home = () => {
                 pelis={pelisFiltradas}
                 generoSelected={generoSelected}
                 cambiarGenero={setGeneroSelected}
+                textoBusqueda={textoBusqueda}
+                handleBuscador={handleBuscador}
+                tipoSeleccionado={tipoSeleccionado}
+                handleTipoSeleccion={handleTipoSeleccion}
+
             />
 
             <Button onClick={handleOpenModal} label="Agregar +" />
@@ -79,7 +87,7 @@ const Home = () => {
 
             <div className={styles.container}>
                 <Items
-                    items={pelisFinalFiltradas}
+                    items={pelisFiltradas}
                     onCheckCompleted={handleCompletado}
                     onRemoveItem={handleRemover}
                     editarItem={handleEditItem}

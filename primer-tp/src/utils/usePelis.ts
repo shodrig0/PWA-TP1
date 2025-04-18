@@ -52,6 +52,8 @@ export function usePelis() {
     const [selectedItem, setSelectedItem] = useState<ItemType | null>(null)
     const [enEdicion, setEnEdicion] = useState(false)
     const [generoSelected, setGeneroSelected] = useState<string>("Todos")
+    const [textoBusqueda, setTextoBusqueda] = useState("")
+    const [tipoSeleccionado, setTipoSeleccionado] = useState<string>("Todos")
 
     const handleDetallesLectura = (item: ItemType) => {
         setSelectedItem(item)
@@ -118,15 +120,23 @@ export function usePelis() {
     const contadorCompleto = pelis.length - contadorActivo
     // console.log(contadorCompleto)
 
-    const pelisFiltradas = pelis.filter(peli => {
+    const pelisFiltradas: Item[] = pelis.filter((peli) => {
         const coincideEstado =
-            filtroSeleccionado === ESTADO_PELIS.ACTIVE ? !peli.vista :
-                filtroSeleccionado === ESTADO_PELIS.COMPLETED ? peli.vista : true
+            filtroSeleccionado === "Activas" ? !peli.vista :
+                filtroSeleccionado === "Completadas" ? peli.vista : true;
 
         const coincideGenero =
-            generoSelected === 'Todos' ? true : peli.genero === generoSelected
+            generoSelected === "Todos" ? true : peli.genero === generoSelected;
 
-        return coincideEstado && coincideGenero
+        const coincideTipo =
+            tipoSeleccionado === "Todos" ? true : peli.tipo === tipoSeleccionado;
+
+        const coincideBusqueda =
+            textoBusqueda.trim() === "" ||
+            peli.title.toLowerCase().includes(textoBusqueda.toLowerCase()) ||
+            peli.director.toLowerCase().includes(textoBusqueda.toLowerCase());
+
+        return coincideEstado && coincideGenero && coincideTipo && coincideBusqueda;
     })
 
     const handleDuplicateTitle = (item: Item): void => {
@@ -178,6 +188,14 @@ export function usePelis() {
         })
         .filter((peli) => generoSelected === "Todos" || peli.genero === generoSelected)
 
+    const handleBuscador = (text: string) => {
+        setTextoBusqueda(text)
+    }
+
+    const handleTipoSeleccion = (texto: string) => {
+        setTipoSeleccionado(texto)
+    }
+
     return {
         pelis,
         pelisFiltradas,
@@ -201,6 +219,10 @@ export function usePelis() {
         onClearCompleted,
         contadorGeneroTotal,
         generoSelected,
-        setGeneroSelected
+        setGeneroSelected,
+        handleBuscador,
+        textoBusqueda,
+        tipoSeleccionado,
+        handleTipoSeleccion
     }
 }

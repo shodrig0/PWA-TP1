@@ -12,6 +12,10 @@ interface Props {
     pelis: Item[]
     generoSelected: string
     cambiarGenero: (genero: string) => void
+    textoBusqueda: string
+    handleBuscador: (texto: string) => void
+    tipoSeleccionado: string
+    handleTipoSeleccion: (texto: string) => void
 }
 
 const Header: React.FC<Props> = ({
@@ -22,7 +26,11 @@ const Header: React.FC<Props> = ({
     onClearCompleted,
     pelis,
     generoSelected,
-    cambiarGenero
+    cambiarGenero,
+    textoBusqueda,
+    handleBuscador,
+    tipoSeleccionado,
+    handleTipoSeleccion
 }) => {
 
     const peliculasPendientes = pelis.filter(peli => peli.tipo === 'Pelicula' && !peli.vista).length
@@ -41,7 +49,10 @@ const Header: React.FC<Props> = ({
                     onFiltroChange={handleFilterChange}
                     generoSelected={generoSelected}
                     cambiarGenero={cambiarGenero}
-
+                    textoBusqueda={textoBusqueda}
+                    handleBuscador={handleBuscador}
+                    porTipo={tipoSeleccionado}
+                    handleTipoSeleccion={handleTipoSeleccion}
                 />
             </header>
 
