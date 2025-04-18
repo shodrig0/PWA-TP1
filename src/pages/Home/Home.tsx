@@ -10,7 +10,6 @@ import Contador from "../../components/Contador/Contador"
 
 const Home = () => {
     const {
-        pelisFiltradas,
         pelisFinalFiltradas,
         abrirModal,
         enEdicion,
@@ -34,7 +33,8 @@ const Home = () => {
         textoBusqueda,
         handleBuscador,
         tipoSeleccionado,
-        handleTipoSeleccion
+        handleTipoSeleccion,
+        tipos,
     } = usePelis()
 
     return (
@@ -47,7 +47,8 @@ const Home = () => {
                 filtroSeleccionado={filtroSeleccionado}
                 handleFilterChange={handleFilterChange}
                 onClearCompleted={onClearCompleted}
-                pelis={pelisFiltradas}
+                peliculasPendientes={tipos["Pelicula"]?.pendientes || 0}
+                seriesPendientes={tipos["Serie"]?.pendientes || 0}
                 generoSelected={generoSelected}
                 cambiarGenero={setGeneroSelected}
                 textoBusqueda={textoBusqueda}

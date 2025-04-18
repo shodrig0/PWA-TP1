@@ -31,7 +31,7 @@ const Formulario: React.FC<Props> = ({ agregarItem, editarItem, itemEditar }) =>
                 anio: 0,
                 genero: "Acción",
                 rating: 0,
-                tipo: "Película",
+                tipo: "Pelicula",
                 vista: false,
             })
         }

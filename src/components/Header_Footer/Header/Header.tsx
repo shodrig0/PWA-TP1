@@ -1,5 +1,5 @@
 import FiltroVista from "../../Buttons/Button_Filtros/FiltroVista"
-import { Item, ValoresFiltros } from "../../../utils/types"
+import { ValoresFiltros } from "../../../utils/types"
 import ButtonDelete from "../../Buttons/Button_Delete/ButtonDelete"
 import styles from "../Header/Header.module.css"
 
@@ -9,7 +9,8 @@ interface Props {
     filtroSeleccionado: ValoresFiltros
     onClearCompleted: () => void
     handleFilterChange: (filtro: ValoresFiltros) => void
-    pelis: Item[]
+    peliculasPendientes: number
+    seriesPendientes: number
     generoSelected: string
     cambiarGenero: (genero: string) => void
     textoBusqueda: string
@@ -24,7 +25,8 @@ const Header: React.FC<Props> = ({
     filtroSeleccionado,
     handleFilterChange,
     onClearCompleted,
-    pelis,
+    peliculasPendientes,
+    seriesPendientes,
     generoSelected,
     cambiarGenero,
     textoBusqueda,
@@ -32,10 +34,6 @@ const Header: React.FC<Props> = ({
     tipoSeleccionado,
     handleTipoSeleccion
 }) => {
-
-    const peliculasPendientes = pelis.filter(peli => peli.tipo === 'Pelicula' && !peli.vista).length
-    const seriesPendientes = pelis.filter(peli => peli.tipo === 'Serie' && !peli.vista).length
-
     return (
         <>
             <header className={styles.containerHeader}>

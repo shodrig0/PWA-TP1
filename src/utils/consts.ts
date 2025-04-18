@@ -20,5 +20,5 @@ export const ESTADO_BTNS = {
     }
 } as const
 
-export const COLORES = ['red', 'blue', 'green']
+export const COLORES = ['blue', 'red', 'green']
 

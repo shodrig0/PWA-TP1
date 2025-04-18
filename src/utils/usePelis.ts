@@ -175,17 +175,38 @@ export function usePelis() {
         }, {} as Record<string, number>)
     }
 
+
     const contadorGeneroTotal = countGenero()
 
     const handleGeneroChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setGeneroSelected(e.target.value)
     }
 
+    const countPorTipo = () => {
+        return pelis.reduce((count, peli) => {
+            const tipo = peli.tipo
+
+            if (!count[tipo]) {
+                count[tipo] = { total: 0, pendientes: 0 }
+            }
+
+            count[tipo].total += 1
+            if (!peli.vista) count[tipo].pendientes += 1
+
+            return count
+        }, {} as Record<string, { total: number; pendientes: number }>)
+    }
+
+    const tipos = countPorTipo()
+    const peliculasPendientes = tipos["Pelicula"]?.pendientes || 0
+    const seriesPendientes = tipos["Serie"]?.pendientes || 0
+
+    console.log(pelis.map(p => p.tipo))
+
     const pelisFinalFiltradas = pelis.filter((peli) => {
         const coincideEstado =
             filtroSeleccionado === "active" ? !peli.vista :
-                filtroSeleccionado === "completed" ? peli.vista :
-                    true
+                filtroSeleccionado === "completed" ? peli.vista : true
 
         const coincideGenero = generoSelected === "Todos" || peli.genero === generoSelected
         const coincideTipo = tipoSeleccionado === "Todos" || peli.tipo === tipoSeleccionado
@@ -233,6 +254,9 @@ export function usePelis() {
         handleBuscador,
         textoBusqueda,
         tipoSeleccionado,
-        handleTipoSeleccion
+        handleTipoSeleccion,
+        tipos,
+        peliculasPendientes,
+        seriesPendientes,
     }
 }

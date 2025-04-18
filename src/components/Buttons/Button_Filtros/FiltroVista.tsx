@@ -67,7 +67,7 @@ const FiltroVista: React.FC<Props> = ({ filtroSeleccionado, onFiltroChange, gene
                     onChange={(e) => handleTipoSeleccion(e.target.value)}
                 >
                     <option value="Todos">Todos</option>
-                    <option value="Pelicula">Película</option>
+                    <option value="Pelicula">Pelicula</option>
                     <option value="Serie">Serie</option>
                 </select>
             </div>
