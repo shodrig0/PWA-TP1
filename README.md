@@ -1,2 +1,2 @@
-# PWA
- 
+# React + TypeScript + Vite
+
