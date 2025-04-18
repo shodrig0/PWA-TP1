@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ESTADO_PELIS } from "./consts"
 import { Item, ItemId, ValoresFiltros, type Item as ItemType } from "./types"
 
@@ -46,7 +46,10 @@ const mockPeliculas: ItemType[] = [
 ]
 
 export function usePelis() {
-    const [pelis, setPelis] = useState<ItemType[]>(mockPeliculas)
+    const [pelis, setPelis] = useState<ItemType[]>(() => {
+        const guardarArray = localStorage.getItem("pelis")
+        return guardarArray ? JSON.parse(guardarArray) : mockPeliculas
+    })
     const [filtroSeleccionado, setFiltroSeleccionado] = useState<ValoresFiltros>(ESTADO_PELIS.ACTIVE)
     const [abrirModal, setAbreModal] = useState(false)
     const [selectedItem, setSelectedItem] = useState<ItemType | null>(null)
@@ -54,6 +57,10 @@ export function usePelis() {
     const [generoSelected, setGeneroSelected] = useState<string>("Todos")
     const [textoBusqueda, setTextoBusqueda] = useState("")
     const [tipoSeleccionado, setTipoSeleccionado] = useState<string>("Todos")
+
+    useEffect(() => {
+        localStorage.setItem("pelis", JSON.stringify(pelis))
+    }, [pelis])
 
     const handleDetallesLectura = (item: ItemType) => {
         setSelectedItem(item)
