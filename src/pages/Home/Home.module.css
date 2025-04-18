@@ -5,8 +5,14 @@
 	color: #111111;
 	min-width: 230px;
 	max-width: 550px;
-	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
 }
+
+.zonaContenido {
+	margin-top: 2rem;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-evenly;
+  }

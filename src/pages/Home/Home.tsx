@@ -59,8 +59,6 @@ const Home = () => {
 
             <Button onClick={handleOpenModal} label="Agregar +" />
 
-            <Contador countGenero={contadorGeneroTotal} />
-
             <Modal abreModal={abrirModal} seCierra={handleCerrarModal}>
                 {enEdicion ? (
                     <Formulario
@@ -85,16 +83,20 @@ const Home = () => {
                     )
                 )}
             </Modal>
-            {console.log("Items filtrados:", pelisFiltradas.map(p => `${p.title} - ${p.vista}`))}
+            {/* {console.log("Items filtrados:", pelisFiltradas.map(p => `${p.title} - ${p.vista}`))} */}
 
-            <div className={styles.container}>
-                <Items
-                    items={pelisFinalFiltradas}
-                    onCheckCompleted={handleCompletado}
-                    onRemoveItem={handleRemover}
-                    editarItem={handleEditItem}
-                    leerDetalles={handleDetallesLectura}
-                />
+            <div className={styles.zonaContenido}>
+                <Contador countGenero={contadorGeneroTotal} />
+
+                <div className={styles.container}>
+                    <Items
+                        items={pelisFinalFiltradas}
+                        onCheckCompleted={handleCompletado}
+                        onRemoveItem={handleRemover}
+                        editarItem={handleEditItem}
+                        leerDetalles={handleDetallesLectura}
+                    />
+                </div>
             </div>
         </>
     )
