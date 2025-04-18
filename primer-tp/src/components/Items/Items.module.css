@@ -3,12 +3,13 @@ li {
 }
 
 .cards {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  background-color: #91cb7e;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
   }
 
   .cards .red {
@@ -39,3 +40,9 @@ li {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
+
+  .card-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

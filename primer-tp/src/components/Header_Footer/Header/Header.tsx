@@ -10,7 +10,8 @@ interface Props {
     onClearCompleted: () => void
     handleFilterChange: (filtro: ValoresFiltros) => void
     pelis: Item[]
-    // tipoSeleccionado: 'pelicula' | 'serie' // RECORDAR LO DEL HANDLE TAMBIÉN ESTÁ EN FILTROVISTA
+    generoSelected: string
+    cambiarGenero: (genero: string) => void
 }
 
 const Header: React.FC<Props> = ({
@@ -19,8 +20,9 @@ const Header: React.FC<Props> = ({
     filtroSeleccionado,
     handleFilterChange,
     onClearCompleted,
-    pelis
-    // tipoSeleccionado
+    pelis,
+    generoSelected,
+    cambiarGenero
 }) => {
 
     const peliculasPendientes = pelis.filter(peli => peli.tipo === 'Pelicula' && !peli.vista).length
@@ -37,7 +39,9 @@ const Header: React.FC<Props> = ({
                 <FiltroVista
                     filtroSeleccionado={filtroSeleccionado}
                     onFiltroChange={handleFilterChange}
-                // tipoContenido={tipoSeleccionado}
+                    generoSelected={generoSelected}
+                    cambiarGenero={cambiarGenero}
+
                 />
             </header>
 

@@ -1,0 +1,11 @@
+.containerCount {
+    margin: 2em 0;
+    padding: 1em;
+    position: fixed;
+    width: 16em;
+    border: 0.02em #ec008c solid;
+    font: 1em 'Verdana', Helvetica, Arial, sans-serif;
+    border-radius: 30px;
+    background: transparent;
+    box-shadow:#ec008e9a 0px 15px 30px -10px;
+}

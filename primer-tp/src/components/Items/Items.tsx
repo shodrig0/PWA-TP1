@@ -25,24 +25,25 @@ export const Items: React.FC<Props> = ({ items, onRemoveItem, onCheckCompleted, 
                         className={styles.itemTitle}
                         onClick={() => leerDetalles(item)}
                     >{item.title}</span>
-                    <Input
-                        id={item.id}
-                        title={item.title}
-                        director={item.director}
-                        anio={item.anio}
-                        genero={item.genero}
-                        rating={item.rating}
-                        tipo={item.tipo}
-                        vista={item.vista}
-                        onCheckCompleted={onCheckCompleted}
-                        onRemoveItem={onRemoveItem}
-                    />
-                    <Button
-                        className={styles.editButton}
-                        onClick={() => editarItem(item)}
-                        label="Editar"
-                    />
-
+                    <div className={styles["card-btns"]}>
+                        <Input
+                            id={item.id}
+                            title={item.title}
+                            director={item.director}
+                            anio={item.anio}
+                            genero={item.genero}
+                            rating={item.rating}
+                            tipo={item.tipo}
+                            vista={item.vista}
+                            onCheckCompleted={onCheckCompleted}
+                            onRemoveItem={onRemoveItem}
+                        />
+                        <Button
+                            className={styles.editButton}
+                            onClick={() => editarItem(item)}
+                            label="Editar"
+                        />
+                    </div>
                 </div>
             ))}
         </div>

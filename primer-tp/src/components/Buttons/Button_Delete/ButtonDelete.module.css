@@ -24,7 +24,7 @@
     transition: all 0.2s;
   }
   .deleteButton:hover .bin path {
-    fill: #fff;
+    fill: #452274
   }
   .deleteButton:active {
     transform: scale(0.98);
