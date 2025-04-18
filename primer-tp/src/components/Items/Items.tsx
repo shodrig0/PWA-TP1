@@ -17,13 +17,15 @@ export const Items: React.FC<Props> = ({ items, onRemoveItem, onCheckCompleted }
     const [abrirModal, setAbrirModal] = useState(false)
 
     const handleItemClick = (item: ItemType) => {
+        const open: boolean = true
         setSelectedItem(item)
-        setAbrirModal(true)
+        setAbrirModal(open)
     }
 
     const handleCerrarModal = () => {
+        const close: boolean = false
         setSelectedItem(null)
-        setAbrirModal(false)
+        setAbrirModal(close)
     }
 
     return (
@@ -60,7 +62,7 @@ export const Items: React.FC<Props> = ({ items, onRemoveItem, onCheckCompleted }
                 ))}
             </div>
 
-            <Modal isOpen={abrirModal} onClose={handleCerrarModal}>
+            <Modal abreModal={abrirModal} seCierra={handleCerrarModal}>
                 {selectedItem && (
                     <div>
                         <h2>{selectedItem.title}</h2>

@@ -5,6 +5,8 @@ import { ESTADO_PELIS } from "../../utils/consts"
 import Header from "../../components/Header_Footer/Header/Header"
 import styles from "./Home.module.css"
 import Titulo from "../../components/Titulo/Titulo"
+import Modal from "../../components/Modal/Modal"
+import Formulario from "../../components/Formularios/Formulario"
 
 const mockPeliculas = [
     {
@@ -52,6 +54,16 @@ const mockPeliculas = [
 const Home = () => {
     const [pelis, setPelis] = useState(mockPeliculas)
     const [filtroSeleccionado, setFiltroSeleccionado] = useState<ValoresFiltros>(ESTADO_PELIS.ACTIVE)
+
+    const [abrirModal, setAbreModal] = useState(false)
+
+    const handleOpenModal = () => {
+        setAbreModal(true)
+    }
+
+    const handleCerrarModal = () => {
+        setAbreModal(false)
+    }
 
 
     const handleRemover = (args?: { id?: ItemId["id"] }): void => {
@@ -124,21 +136,25 @@ const Home = () => {
     return (
         <>
             <Titulo />
+
             <Header
                 contadorActivo={contadorActivo}
                 contadorCompleto={contadorCompleto}
                 filtroSeleccionado={filtroSeleccionado}
                 handleFilterChange={handleFilterChange}
                 onClearCompleted={onClearCompleted}
-                agregarItem={handleDuplicateTitle}
                 pelis={pelis}
             />
+            <button onClick={handleOpenModal}> + </button>
+            <Modal abreModal={abrirModal} seCierra={handleCerrarModal} >
+                <Formulario agregarItem={handleDuplicateTitle} />
+            </Modal>
 
             <div className={styles.container}>
                 <Items
+                    items={pelisFiltradas}
                     onCheckCompleted={handleCompletado}
                     onRemoveItem={handleRemover}
-                    items={pelisFiltradas}
                 />
             </div>
 

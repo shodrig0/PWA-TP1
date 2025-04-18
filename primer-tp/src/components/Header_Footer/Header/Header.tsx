@@ -1,8 +1,7 @@
 import FiltroVista from "../../Buttons/Button_Filtros/FiltroVista"
 import { Item, ValoresFiltros } from "../../../utils/types"
-import Formulario from "../../Formularios/Formulario"
 import ButtonDelete from "../../Buttons/Button_Delete/ButtonDelete"
-// import styles from "../Header/Header.module.css"
+import styles from "../Header/Header.module.css"
 
 interface Props {
     contadorActivo: number
@@ -10,7 +9,6 @@ interface Props {
     filtroSeleccionado: ValoresFiltros
     onClearCompleted: () => void
     handleFilterChange: (filtro: ValoresFiltros) => void
-    agregarItem: (item: Item) => void
     pelis: Item[]
     // tipoSeleccionado: 'pelicula' | 'serie' // RECORDAR LO DEL HANDLE TAMBIÉN ESTÁ EN FILTROVISTA
 }
@@ -21,8 +19,7 @@ const Header: React.FC<Props> = ({
     filtroSeleccionado,
     handleFilterChange,
     onClearCompleted,
-    agregarItem,
-    pelis,
+    pelis
     // tipoSeleccionado
 }) => {
 
@@ -31,7 +28,7 @@ const Header: React.FC<Props> = ({
 
     return (
         <>
-            <header>
+            <header className={styles.containerHeader}>
                 {contadorActivo > 0 ? (
                     <span>
                         Tenés <strong>{peliculasPendientes}</strong> {peliculasPendientes === 1 ? 'peli' : 'pelis'} y{' '}
@@ -43,8 +40,6 @@ const Header: React.FC<Props> = ({
                 // tipoContenido={tipoSeleccionado}
                 />
             </header>
-
-            <Formulario agregarItem={agregarItem} />
 
             {contadorCompleto > 0 && (
                 <ButtonDelete
