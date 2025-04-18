@@ -1,5 +1,6 @@
 import { ESTADO_BTNS } from "../../../utils/consts"
 import { ValoresFiltros } from "../../../utils/types"
+import styles from "./FiltroVista.module.css"
 
 interface Props {
     // filtroSeleccionado: 'active' | 'completed'
@@ -9,7 +10,7 @@ interface Props {
 
 const FiltroVista: React.FC<Props> = ({ filtroSeleccionado, onFiltroChange }) => {
     return (
-        <ul className="">
+        <ul className={styles.lista}>
             {
                 Object.entries(ESTADO_BTNS).map(([key, { href, estado }]) => {
                     const seleccionado = key === filtroSeleccionado

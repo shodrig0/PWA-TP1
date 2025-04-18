@@ -7,6 +7,7 @@ import styles from "./Home.module.css"
 import Titulo from "../../components/Titulo/Titulo"
 import Modal from "../../components/Modal/Modal"
 import Formulario from "../../components/Formularios/Formulario"
+import Button from "../../components/Buttons/Button_AgregarEditar/ButtonAgregarEditar"
 
 const mockPeliculas = [
     {
@@ -57,12 +58,44 @@ const Home = () => {
 
     const [abrirModal, setAbreModal] = useState(false)
 
-    const handleOpenModal = () => {
+    const [selectedItem, setSelectedItem] = useState<ItemType | null>(null)
+
+    const [enEdicion, setEnEdicion] = useState(false)
+
+    const handleDetallesLectura = (item: ItemType) => {
+        setSelectedItem(item)
+        setEnEdicion(false)
         setAbreModal(true)
     }
 
+    const handleOpenModal = () => {
+        const noHayItem: null = null
+        const open: boolean = true
+        setSelectedItem(noHayItem)
+        setEnEdicion(true)
+        setAbreModal(open)
+    }
+
+    const handleEditItem = (item: ItemType) => {
+        const open: boolean = true
+        setSelectedItem(item)
+        setEnEdicion(true)
+        setAbreModal(open)
+    }
+
     const handleCerrarModal = () => {
-        setAbreModal(false)
+        const noHayItem: null = null
+        const close: boolean = false
+        setSelectedItem(noHayItem)
+        setAbreModal(close)
+    }
+
+    const handleEditarItem = (item: ItemType) => {
+        const nuevasPelis = pelis.map((peli) =>
+            peli.id === item.id ? item : peli
+        )
+        setPelis(nuevasPelis)
+        handleCerrarModal()
     }
 
 
@@ -133,6 +166,8 @@ const Home = () => {
         setPelis(borrarPelisVistas)
     }
 
+
+
     return (
         <>
             <Titulo />
@@ -145,9 +180,31 @@ const Home = () => {
                 onClearCompleted={onClearCompleted}
                 pelis={pelis}
             />
-            <button onClick={handleOpenModal}> + </button>
-            <Modal abreModal={abrirModal} seCierra={handleCerrarModal} >
-                <Formulario agregarItem={handleDuplicateTitle} />
+            <Button onClick={handleOpenModal} label="Agregar +" />
+            <Modal abreModal={abrirModal} seCierra={handleCerrarModal}>
+                {enEdicion ? (
+                    <Formulario
+                        agregarItem={handleDuplicateTitle}
+                        editarItem={handleEditarItem}
+                        itemEditar={selectedItem}
+                    />
+                ) : (
+                    selectedItem && (
+                        <div>
+                            <h2>{selectedItem.title}</h2>
+                            <p><strong>Director:</strong> {selectedItem.director}</p>
+                            <p><strong>Año:</strong> {selectedItem.anio}</p>
+                            <p><strong>Género:</strong> {selectedItem.genero}</p>
+                            <p><strong>Rating:</strong> {selectedItem.rating}</p>
+                            <p><strong>Tipo:</strong> {selectedItem.tipo}</p>
+                            <Button
+                                onClick={() => handleEditItem(selectedItem)}
+                                label="Editar"
+                                className="secondary"
+                            />
+                        </div>
+                    )
+                )}
             </Modal>
 
             <div className={styles.container}>
@@ -155,9 +212,10 @@ const Home = () => {
                     items={pelisFiltradas}
                     onCheckCompleted={handleCompletado}
                     onRemoveItem={handleRemover}
+                    editarItem={handleEditItem}
+                    leerDetalles={handleDetallesLectura}
                 />
             </div>
-
         </>
     )
 }

@@ -1,0 +1,16 @@
+.lista {
+    font: 1.5em 'Impact', Helvetica, Arial, sans-serif;
+    font-weight: 50;
+    display: flex;
+    gap: 2em;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(58, 142, 192);
+}
+
+ ul {
+    list-style: none;
+    padding-left: 0;
+}
